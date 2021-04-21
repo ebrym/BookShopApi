@@ -7,6 +7,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System;
 using System.Net.Http;
+using System.IO;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Configuration;
 
 namespace BookShop.API.IntegrationTests.Base
 {
@@ -20,16 +24,18 @@ namespace BookShop.API.IntegrationTests.Base
 
                 services.AddDbContext<ApplicationDbContext>(options =>
                 {
-                    options.UseSqlServer("ApplicationDbContextInMemoryTest");
+                    options.UseSqlServer("ApplicationDbContext");
                 });
 
                 var sp = services.BuildServiceProvider();
 
                 using (var scope = sp.CreateScope())
                 {
+                    
                     var scopedServices = scope.ServiceProvider;
                     var context = scopedServices.GetRequiredService<ApplicationDbContext>();
                     var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
+
 
                     context.Database.EnsureCreated();
 
@@ -43,6 +49,25 @@ namespace BookShop.API.IntegrationTests.Base
                     }
                 };
             });
+        }
+
+        protected override IWebHostBuilder CreateWebHostBuilder()
+        {
+            var projectDir = Directory.GetCurrentDirectory();
+            var configPath = Path.Combine(projectDir, "appsettings.json");
+
+            return WebHost.CreateDefaultBuilder(null)
+                .UseSolutionRelativeContentRoot("BookShop")
+                .ConfigureAppConfiguration((context, conf) =>
+                {
+                    conf.AddJsonFile(configPath);
+                })
+                .ConfigureTestServices(services =>
+                {
+                    services.AddMvc().AddApplicationPart(typeof(Startup).Assembly);
+                })
+                .UseWebRoot("wwwroot")
+                .UseStartup<TEntryPoint>();
         }
 
         public HttpClient GetAnonymousClient()
