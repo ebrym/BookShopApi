@@ -1,0 +1,17 @@
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Infrastructure.deps.json
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Infrastructure.runtimeconfig.json
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Infrastructure.runtimeconfig.dev.json
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Infrastructure.dll
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Infrastructure.pdb
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Data.dll
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Repository.dll
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Data.pdb
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\bin\Debug\netcoreapp3.1\BookShop.Repository.pdb
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.csprojAssemblyReference.cache
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.AssemblyInfo.cs
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.csproj.CopyComplete
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.dll
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.pdb
+C:\Users\ibrahim\source\repos\BookShop\BookShop.Infrastructure\obj\Debug\netcoreapp3.1\BookShop.Infrastructure.genruntimeconfig.cache
