@@ -29,7 +29,7 @@ namespace BookShop.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddControllers().AddFluentValidation(x =>
@@ -43,6 +43,7 @@ namespace BookShop.API
             services.AddSerilogLogger(Configuration);
             services.AddIdentity();
             services.AddCors();
+            services.AddResponseCaching();
             services.AddHttpClient("HttpClient").AddPolicyHandler(x =>
             {
                 return HttpPolicyExtensions
@@ -52,20 +53,25 @@ namespace BookShop.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger)
+        public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger logger, ApplicationDbContext context)
         {
+            if (env.IsProduction())
+            {
+                try
+                {
+                    var ctx = app.ApplicationServices.GetService<ApplicationDbContext>();
+                    context.Database.Migrate();
+                }
+                catch (System.Exception exception)
+                {
+                    logger.Error(exception.Message);
+                }
+            }
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //var context = app.ApplicationServices.GetService<ApplicationDbContext>();
-                //try
-                //{
-                //    context.Database.Migrate();
-                //}
-                //catch (System.Exception exception)
-                //{
-                //    logger.Error(exception.Message);
-                //}
+               
             }
 
             app.UseCors(x =>
@@ -82,7 +88,7 @@ namespace BookShop.API
             app.UseHttpsRedirection();
 
             //app.ConfigureExceptionHandler(logger);
-
+            app.UseResponseCaching();
             app.UseRouting();
 
             app.UseAuthorization();

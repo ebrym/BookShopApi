@@ -7,6 +7,7 @@ using BookShop.Repository.Response.Author;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -51,6 +52,27 @@ namespace BookShop.Repository.Authors.Commands
             //    return (false, "The Author with this name has already been created", null);
             //perform insert 
             author.DateCreated = DateTime.Now;
+            var iBookAuthor = new List<BookAuthor>();
+
+
+            foreach (var item in request.BookId)
+            {
+                var book = await applicationDb.Books.FirstOrDefaultAsync(x => x.Id.Equals(item.ToString()), cancellationToken);
+              
+                if (book != null)
+                {
+                    var bookauthor = new BookAuthor
+                    {
+                        AuthorId = author.Id,
+                        BookId = book.Id
+                    };
+                    iBookAuthor.Add(bookauthor);
+                }
+
+            }
+
+            author.BookAuthors = iBookAuthor;
+
             await applicationDb.Authors.AddAsync(author, cancellationToken);
 
             await applicationDb.SaveChangesAsync(cancellationToken);

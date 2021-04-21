@@ -17,7 +17,7 @@ namespace BookShop.Repository.Request.Author
         /// </summary>
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+        public List<string> BookId { get; set; } 
 
     }
 }
